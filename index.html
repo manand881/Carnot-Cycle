@@ -50,25 +50,32 @@
                         ctx.fillStyle = crankCaseColor;
                         ctx.lineWidth = 4;
 
-                        // left cylinder wall
+                        // cylinder walls
 
                         ctx.beginPath();
                         ctx.moveTo(left_wall_x,left_wall_y_start);
                         ctx.lineTo(left_wall_x,left_wall_y_end);
-                        ctx.stroke();
-
-                        // right cylinder wall
-
-                        ctx.beginPath();
-                        ctx.moveTo(right_wall_x,right_wall_y_start);
                         ctx.lineTo(right_wall_x,right_wall_y_end);
+                        ctx.lineTo(right_wall_x,right_wall_y_start);
                         ctx.stroke();
 
-                        // bottom cylinder wall
+                        // source & sink walls
 
                         ctx.beginPath();
+                        ctx.strokeStyle = crankCaseColor;
+                        ctx.fillStyle = crankCaseColor;
+                        ctx.lineWidth = 4;
                         ctx.moveTo(left_wall_x,left_wall_y_end);
-                        ctx.lineTo(right_wall_x,right_wall_y_end);
+                        ctx.lineTo(left_wall_x,left_wall_y_end+50);
+                        ctx.lineTo(right_wall_x,left_wall_y_end+50);
+                        ctx.lineTo(right_wall_x,left_wall_y_end);
+                        ctx.stroke();
+
+                        // source and sink
+
+                        ctx.beginPath();
+                        ctx.fillStyle="#F44336";
+                        ctx.fillRect(left_wall_x+2,left_wall_y_end+2,piston_width-4,50-4);
                         ctx.stroke();
 
                         // piston
@@ -98,6 +105,7 @@
 
                         step=40*Math.sin(x);
                         x=x+0.05;
+                        console.log(step);
                     }
                 };
 
