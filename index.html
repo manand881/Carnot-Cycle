@@ -11,6 +11,7 @@
         var flag=true;
         var step=0;
         var x=0;
+        var step2=0;
 
         function start() {
 
@@ -74,18 +75,24 @@
                         // source and sink
 
                         ctx.beginPath();
-                        if (step>0 && step<28){
-                            ctx.fillStyle="#D50000";    // red
+                        ctx.fillStyle="#D50000";    // red
+                        if(step2>step){
+                            if(step>-41 && step<20){
+                                ctx.fillStyle="#D50000";    // red
+                            }
+                            else if(step>20 && step<41){
+                                ctx.fillStyle="#FFFFFF";    // white
+                            }
                         }
-                        else if (step>28 && step<40){
-                            ctx.fillStyle="#FFFFFF";    // white
+                        else if(step>step2){
+                            if(step<41&& step>-20){
+                                ctx.fillStyle="#2962FF";     // blue
+                            }
+                            else{
+                                ctx.fillStyle="#FFFFFF";    // white
+                            }
                         }
-                        else if (step<0 && step >-28){
-                            ctx.fillStyle="#2962FF"     // blue
-                        }
-                        else{
-                            ctx.fillStyle="#FFFFFF";    // white
-                        }
+
                         ctx.fillRect(left_wall_x+2,left_wall_y_end+2,piston_width-4,50-4);
                         ctx.stroke();
 
@@ -93,14 +100,14 @@
 
                         ctx.beginPath();
                         ctx.fillStyle = pistonColor;
-                        ctx.fillRect(piston_x+2,piston_y+step,piston_width-4,piston_height);
+                        ctx.fillRect(piston_x+2,piston_y-step,piston_width-4,piston_height);
                         ctx.stroke();
 
                         // cavity
 
                         ctx.beginPath();
                         ctx.fillStyle = test;
-                        ctx.fillRect(piston_x+2,piston_y+step+piston_height,piston_width-4,87-step);
+                        ctx.fillRect(piston_x+2,piston_y-step+piston_height,piston_width-4,87+step);
                         ctx.stroke();
 
                         // connecting rod
@@ -109,15 +116,17 @@
                         ctx.strokeStyle = pistonColor;
                         ctx.fillStyle = pistonColor;
                         ctx.lineWidth = 10;
-                        ctx.moveTo((right_wall_x + left_wall_x)/2,piston_y+step);
-                        ctx.lineTo((right_wall_x + left_wall_x)/2,piston_y+step-70);
+                        ctx.moveTo((right_wall_x + left_wall_x)/2,piston_y-step);
+                        ctx.lineTo((right_wall_x + left_wall_x)/2,piston_y-step-70);
                         ctx.lineCap = 'round';
                         ctx.stroke();
 
                         if(flag===false){
 
+
                             step=Math.round(400*Math.sin(x))/10;
-                            x=x-0.03;
+                            x=x+0.03;
+                            step2=Math.round(400*Math.sin(x))/10;
                             console.log(step);
 
                         }
