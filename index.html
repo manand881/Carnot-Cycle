@@ -74,7 +74,18 @@
                         // source and sink
 
                         ctx.beginPath();
-                        ctx.fillStyle="#F44336";
+                        if (step>0 && step<28){
+                            ctx.fillStyle="#D50000";    // red
+                        }
+                        else if (step>28 && step<40){
+                            ctx.fillStyle="#FFFFFF";    // white
+                        }
+                        else if (step<0 && step >-28){
+                            ctx.fillStyle="#2962FF"     // blue
+                        }
+                        else{
+                            ctx.fillStyle="#FFFFFF";    // white
+                        }
                         ctx.fillRect(left_wall_x+2,left_wall_y_end+2,piston_width-4,50-4);
                         ctx.stroke();
 
@@ -103,9 +114,13 @@
                         ctx.lineCap = 'round';
                         ctx.stroke();
 
-                        step=40*Math.sin(x);
-                        x=x+0.05;
-                        console.log(step);
+                        if(flag===false){
+
+                            step=Math.round(400*Math.sin(x))/10;
+                            x=x-0.03;
+                            console.log(step);
+
+                        }
                     }
                 };
 
